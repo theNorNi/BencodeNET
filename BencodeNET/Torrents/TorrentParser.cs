@@ -110,7 +110,7 @@ namespace BencodeNET.Torrents
 
             var torrent = new Torrent(info)
             {
-                IsPrivate = info.Get<BNumber>(TorrentInfoFields.Private) == 1,
+                IsPrivate = info.Get<BNumber>(TorrentInfoFields.Private),
                 PieceSize = info.Get<BNumber>(TorrentInfoFields.PieceLength),
                 Pieces = info.Get<BString>(TorrentInfoFields.Pieces)?.Value.ToArray() ?? new byte[0],
 

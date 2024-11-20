@@ -102,6 +102,12 @@ namespace BencodeNET.Objects
             return bint.Value > 0;
         }
 
+        public static implicit operator bool?(BNumber bint)
+        {
+            if (bint == null) return null;
+            return bint.Value > 0;
+        }
+
         public static implicit operator DateTime?(BNumber number)
         {
             if (number == null) return null;

@@ -228,7 +228,7 @@ namespace BencodeNET.Torrents
         /// [optional] If set to true clients must only publish it's presence to the defined trackers.
         /// Mainly used for private trackers which don't allow PEX, DHT etc.
         /// </summary>
-        public virtual bool IsPrivate { get; set; }
+        public virtual bool? IsPrivate { get; set; }
 
         /// <summary>
         /// The total size in bytes of the included files.
@@ -307,7 +307,8 @@ namespace BencodeNET.Torrents
             if (Pieces?.Length > 0)
                 info[TorrentInfoFields.Pieces] = new BString(Pieces, encoding);
 
-            info[TorrentInfoFields.Private] = (BNumber)(IsPrivate ? 1 : 0);
+            if (IsPrivate.HasValue)
+                info[TorrentInfoFields.Private] = (BNumber)(IsPrivate.Value ? 1 : 0);
 
             if (FileMode == TorrentFileMode.Single)
             {
